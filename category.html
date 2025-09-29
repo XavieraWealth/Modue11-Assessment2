@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasty Bites - Menu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🍴 Tasty Bites Restaurant</h1>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="category.html" class="active"><i class="fas fa-utensils"></i> Menu</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 id="category-title">Our Menu</h2>
+        <div class="menu-items" id="menu-container">
+            <!-- Menu items will be loaded dynamically based on category -->
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Tasty Bites Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Menu data for different categories
+        const menuData = {
+            starters: [
+                { name: "Garlic Bread", description: "Freshly baked bread with garlic butter", price: "R45", icon: "🍞", id: "garlic-bread" },
+                { name: "Spicy Chicken Wings", description: "Crispy wings with special sauce", price: "R85", icon: "🍗", id: "chicken-wings" },
+                { name: "Caprese Salad", description: "Fresh tomatoes, mozzarella, and basil", price: "R65", icon: "🥗", id: "caprese-salad" }
+            ],
+            mains: [
+                { name: "Grilled Steak", description: "Juicy steak with roasted vegetables", price: "R185", icon: "🥩", id: "grilled-steak" },
+                { name: "Chicken Alfredo Pasta", description: "Creamy pasta with grilled chicken", price: "R125", icon: "🍝", id: "chicken-alfredo" },
+                { name: "Vegetable Curry", description: "Spicy curry with fresh vegetables", price: "R95", icon: "🍛", id: "vegetable-curry" }
+            ],
+            desserts: [
+                { name: "Chocolate Lava Cake", description: "Warm cake with molten chocolate center", price: "R65", icon: "🍫", id: "chocolate-cake" },
+                { name: "New York Cheesecake", description: "Creamy cheesecake with berry sauce", price: "R75", icon: "🍰", id: "cheesecake" },
+                { name: "Ice Cream Sundae", description: "Vanilla ice cream with toppings", price: "R55", icon: "🍨", id: "ice-cream" }
+            ],
+            drinks: [
+                { name: "Fresh Orange Juice", description: "Freshly squeezed orange juice", price: "R35", icon: "🍊", id: "orange-juice" },
+                { name: "Iced Coffee", description: "Chilled coffee with cream", price: "R45", icon: "☕", id: "iced-coffee" },
+                { name: "Fruit Smoothie", description: "Mixed berry smoothie", price: "R50", icon: "🥤", id: "smoothie" }
+            ]
+        };
+
+        // Get category from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const category = urlParams.get('type') || 'starters';
+        
+        // Update page title
+        const categoryTitle = document.getElementById('category-title');
+        categoryTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1) + ' Menu';
+        
+        // Display menu items
+        const menuContainer = document.getElementById('menu-container');
+        const items = menuData[category] || menuData.starters;
+        
+        items.forEach(item => {
+            const menuItem = document.createElement('div');
+            menuItem.className = 'menu-item';
+            menuItem.onclick = () => location.href = `item-details.html?item=${item.id}`;
+            
+            menuItem.innerHTML = `
+                <div class="food-icon">${item.icon}</div>
+                <h3>${item.name}</h3>
+                <p>${item.description}</p>
+                <span class="price">${item.price}</span>
+            `;
+            
+            menuContainer.appendChild(menuItem);
+        });
+    </script>
+</body>
+</html>
