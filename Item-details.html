@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasty Bites - Item Details</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🍴 Tasty Bites Restaurant</h1>
+            <nav>
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <a href="category.html"><i class="fas fa-utensils"></i> Menu</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="item-detail">
+            <div class="item-image-placeholder" id="item-icon">🍞</div>
+            <div class="item-info">
+                <h2 id="item-name">Garlic Bread</h2>
+                <p class="price" id="item-price">R45</p>
+                <p class="serving-size" id="item-serving">Serving Size: 6 pieces</p>
+                <p class="description" id="item-description">Freshly baked Italian bread topped with our special garlic butter blend.</p>
+                
+                <h3><i class="fas fa-plus"></i> Add Extras:</h3>
+                <ul class="extras-list" id="extras-list">
+                    <!-- Extras will be loaded dynamically -->
+                </ul>
+
+                <h3><i class="fas fa-edit"></i> Special Requests:</h3>
+                <textarea placeholder="Any special instructions or allergies?"></textarea>
+
+                <button class="order-btn" onclick="location.href='thank-you.html'">
+                    <i class="fas fa-shopping-cart"></i> Place Order
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Tasty Bites Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Item details data
+        const itemDetails = {
+            'garlic-bread': {
+                name: 'Garlic Bread',
+                price: 'R45',
+                serving: 'Serving Size: 6 pieces',
+                description: 'Freshly baked Italian bread topped with our special garlic butter blend, parsley, and a hint of parmesan cheese. Perfect for sharing!',
+                icon: '🍞',
+                extras: [
+                    { name: 'Extra Cheese', price: 'R10' },
+                    { name: 'Extra Garlic Butter', price: 'R5' },
+                    { name: 'Side of Marinara Sauce', price: 'R8' },
+                    { name: 'Herb Mix Topping', price: 'R7' }
+                ]
+            },
+            'chicken-wings': {
+                name: 'Spicy Chicken Wings',
+                price: 'R85',
+                serving: 'Serving Size: 8 pieces',
+                description: 'Crispy chicken wings tossed in our signature spicy sauce, served with celery sticks and blue cheese dip.',
+                icon: '🍗',
+                extras: [
+                    { name: 'Extra Sauce', price: 'R10' },
+                    { name: 'Blue Cheese Dip', price: 'R12' },
+                    { name: 'Celery Sticks', price: 'R5' },
+                    { name: 'Extra Spicy', price: 'R8' }
+                ]
+            },
+            'caprese-salad': {
+                name: 'Caprese Salad',
+                price: 'R65',
+                serving: 'Serving Size: 1 portion',
+                description: 'Fresh buffalo mozzarella, ripe tomatoes, and basil leaves drizzled with extra virgin olive oil and balsamic reduction.',
+                icon: '🥗',
+                extras: [
+                    { name: 'Extra Mozzarella', price: 'R15' },
+                    { name: 'Avocado Slices', price: 'R12' },
+                    { name: 'Balsamic Glaze', price: 'R5' },
+                    { name: 'Toasted Pine Nuts', price: 'R8' }
+                ]
+            },
+            'grilled-steak': {
+                name: 'Grilled Steak',
+                price: 'R185',
+                serving: 'Serving Size: 250g',
+                description: 'Premium cut steak grilled to perfection, served with roasted vegetables and garlic mashed potatoes.',
+                icon: '🥩',
+                extras: [
+                    { name: 'Peppercorn Sauce', price: 'R15' },
+                    { name: 'Mushroom Sauce', price: 'R12' },
+                    { name: 'Extra Mashed Potatoes', price: 'R10' },
+                    { name: 'Grilled Asparagus', price: 'R18' }
+                ]
+            },
+            'chicken-alfredo': {
+                name: 'Chicken Alfredo Pasta',
+                price: 'R125',
+                serving: 'Serving Size: 1 portion',
+                description: 'Creamy Alfredo sauce with grilled chicken breast over fettuccine pasta, topped with parmesan cheese.',
+                icon: '🍝',
+                extras: [
+                    { name: 'Extra Chicken', price: 'R20' },
+                    { name: 'Garlic Bread', price: 'R15' },
+                    { name: 'Extra Parmesan', price: 'R5' },
+                    { name: 'Side Salad', price: 'R12' }
+                ]
+            },
+            'vegetable-curry': {
+                name: 'Vegetable Curry',
+                price: 'R95',
+                serving: 'Serving Size: 1 portion',
+                description: 'Aromatic spice blend with fresh seasonal vegetables, served with basmati rice and naan bread.',
+                icon: '🍛',
+                extras: [
+                    { name: 'Extra Naan Bread', price: 'R12' },
+                    { name: 'Coconut Rice', price: 'R8' },
+                    { name: 'Extra Vegetables', price: 'R10' },
+                    { name: 'Spicy Level Up', price: 'R5' }
+                ]
+            },
+            'chocolate-cake': {
+                name: 'Chocolate Lava Cake',
+                price: 'R65',
+                serving: 'Serving Size: 1 piece',
+                description: 'Warm chocolate cake with a molten chocolate center, served with vanilla ice cream and berry compote.',
+                icon: '🍫',
+                extras: [
+                    { name: 'Extra Ice Cream', price: 'R15' },
+                    { name: 'Whipped Cream', price: 'R8' },
+                    { name: 'Chocolate Sauce', price: 'R5' },
+                    { name: 'Fresh Berries', price: 'R12' }
+                ]
+            },
+            'cheesecake': {
+                name: 'New York Cheesecake',
+                price: 'R75',
+                serving: 'Serving Size: 1 slice',
+                description: 'Rich and creamy classic cheesecake with a graham cracker crust, topped with mixed berry sauce.',
+                icon: '🍰',
+                extras: [
+                    { name: 'Extra Berry Sauce', price: 'R8' },
+                    { name: 'Whipped Cream', price: 'R5' },
+                    { name: 'Chocolate Drizzle', price: 'R7' },
+                    { name: 'Caramel Sauce', price: 'R6' }
+                ]
+            },
+            'ice-cream': {
+                name: 'Ice Cream Sundae',
+                price: 'R55',
+                serving: 'Serving Size: 2 scoops',
+                description: 'Vanilla ice cream with your choice of toppings: chocolate sauce, nuts, sprinkles, and a cherry on top.',
+                icon: '🍨',
+                extras: [
+                    { name: 'Extra Scoop', price: 'R15' },
+                    { name: 'Hot Fudge', price: 'R8' },
+                    { name: 'Caramel Sauce', price: 'R6' },
+                    { name: 'Mixed Nuts', price: 'R7' }
+                ]
+            },
+            'orange-juice': {
+                name: 'Fresh Orange Juice',
+                price: 'R35',
+                serving: 'Serving Size: 300ml',
+                description: 'Freshly squeezed orange juice, served chilled with ice. Packed with vitamin C and natural sweetness.',
+                icon: '🍊',
+                extras: [
+                    { name: 'Large Size', price: 'R10' },
+                    { name: 'Extra Ice', price: 'R3' },
+                    { name: 'Mint Leaves', price: 'R4' },
+                    { name: 'Garnish with Orange Slice', price: 'R2' }
+                ]
+            },
+            'iced-coffee': {
+                name: 'Iced Coffee',
+                price: 'R45',
+                serving: 'Serving Size: 400ml',
+                description: 'Chilled brewed coffee with milk and cream, sweetened to perfection. The perfect refreshment.',
+                icon: '☕',
+                extras: [
+                    { name: 'Extra Shot of Coffee', price: 'R8' },
+                    { name: 'Whipped Cream', price: 'R6' },
+                    { name: 'Caramel Syrup', price: 'R5' },
+                    { name: 'Vanilla Flavor', price: 'R4' }
+                ]
+            },
+            'smoothie': {
+                name: 'Fruit Smoothie',
+                price: 'R50',
+                serving: 'Serving Size: 450ml',
+                description: 'Blended mixed berries with banana, yogurt, and honey. A healthy and refreshing treat.',
+                icon: '🥤',
+                extras: [
+                    { name: 'Protein Powder', price: 'R12' },
+                    { name: 'Extra Honey', price: 'R4' },
+                    { name: 'Chia Seeds', price: 'R6' },
+                    { name: 'Extra Fruits', price: 'R8' }
+                ]
+            }
+        };
+
+        // Get item from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const itemKey = urlParams.get('item') || 'garlic-bread';
+        const item = itemDetails[itemKey] || itemDetails['garlic-bread'];
+
+        // Update page content
+        document.getElementById('item-icon').textContent = item.icon;
+        document.getElementById('item-name').textContent = item.name;
+        document.getElementById('item-price').textContent = item.price;
+        document.getElementById('item-serving').textContent = item.serving;
+        document.getElementById('item-description').textContent = item.description;
+
+        // Update extras list
+        const extrasList = document.getElementById('extras-list');
+        item.extras.forEach((extra, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<input type="checkbox" id="extra-${index}"> <label for="extra-${index}">${extra.name} (${extra.price})</label>`;
+            extrasList.appendChild(li);
+        });
+    </script>
+</body>
+</html>
