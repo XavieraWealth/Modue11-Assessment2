@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasty Bites - Home</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>🍴 Tasty Bites Restaurant</h1>
+            <nav>
+                <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h2>Welcome to Tasty Bites!</h2>
+            <p>Delicious food made with love and fresh ingredients</p>
+        </section>
+
+        <section class="categories">
+            <h2>Our Menu Categories</h2>
+            <div class="category-grid">
+                <div class="category-card" onclick="location.href='category.html?type=starters'">
+                    <i class="fas fa-apple-alt"></i>
+                    <h3>Starters</h3>
+                    <p>Perfect beginnings to your meal</p>
+                </div>
+                <div class="category-card" onclick="location.href='category.html?type=mains'">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Main Courses</h3>
+                    <p>Hearty and satisfying dishes</p>
+                </div>
+                <div class="category-card" onclick="location.href='category.html?type=desserts'">
+                    <i class="fas fa-ice-cream"></i>
+                    <h3>Desserts</h3>
+                    <p>Sweet endings to your feast</p>
+                </div>
+                <div class="category-card" onclick="location.href='category.html?type=drinks'">
+                    <i class="fas fa-glass-cheers"></i>
+                    <h3>Drinks</h3>
+                    <p>Refreshing beverages</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Tasty Bites Restaurant. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
